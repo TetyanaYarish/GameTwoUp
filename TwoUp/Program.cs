@@ -21,12 +21,12 @@ namespace TwoUp
             Console.WriteLine("\n\nProbability of double heads is " + probabilityDoubleHeads + " %.");
             Console.WriteLine("Probability of double tails is " + probabilityOfDoubleTails + " %.");
             Console.WriteLine("Probability of odds is " + probabilityOfOdds + " %.");
-            var r=simulator.theLongestHead;
-            Console.WriteLine(r);       
-            var t=simulator.theLongestTail;
-            Console.WriteLine("Tail "+t);   
-            var t2=simulator.theLongestHead2;
-            Console.WriteLine("Head 2 "+t2);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            var h=simulator.theLongestHead;
+            Console.WriteLine("\nThe longest double head "+h);
+            Console.ForegroundColor = ConsoleColor.Red;
+            var t=simulator.theLongestTali;
+            Console.WriteLine("The longest double tail "+t);
             Console.ResetColor();
             Console.ReadKey();
         }

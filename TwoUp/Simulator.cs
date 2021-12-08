@@ -12,13 +12,10 @@ namespace TwoUp
         public decimal doubleHead { get; set; }
         public decimal doubleTail { get; set; }
         public decimal numberOfOdds { get; set; }
-        // public List<int> theLongestTail=new List<int>();
         public int theLongestHead { get; set; }
-        private int theLongestHead21;
-        public bool TailLeader { get; set; }
-        public bool HeadLeader { get; set; }
-        public int theLongestHead2 { get { return theLongestHead21; } set { theLongestHead21 = value; } }
-        public int theLongestTail { get; set; }
+        public int theLongestHead2 { get; set; }
+        public int theLongestTali { get; set; }
+        public int theLongestTail2 { get; set; }
         string head = "Head";
         string tail = "Tail";
         int numberOfRun;
@@ -31,52 +28,38 @@ namespace TwoUp
                 string secondTry = grandomGenerator.OneUp();//Second coin
                 if (firstTry == head && secondTry == head)
                 {
-                    HeadLeader = true;
-                   // 
+                    theLongestTail2 = 0;
+                    theLongestHead2++;
+                    if (theLongestHead < theLongestHead2)
+                    {
+                        theLongestHead++;
+                    }
                     Console.Write($"Spin " + i + " of " + numberOfRun);
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write("  \t" + firstTry + " + ");
                     Console.WriteLine(secondTry);
                     Console.ResetColor();
-                    if (theLongestHead==0 || theLongestHead <= theLongestHead2 && TailLeader==true)
-                    {
-                        TailLeader = false;
-                        theLongestHead ++;
-                        theLongestHead21 = theLongestHead;
-                       if (theLongestHead < theLongestHead2)
-                        {
-                            theLongestHead =theLongestHead+theLongestHead2;
-                            //theLongestHead21 = theLongestHead2;
-                            //if (theLongestHead2<theLongestHead21)
-                            //{
-                            //    theLongestHead21++;
-                            //}
-                        }
-                        // theLongestHead = theLongestHead2;
-                    }
-                    else
-                    {
-                        theLongestHead++;
-                    }
-
                     doubleHead++;
                 }
                 else if (firstTry == tail && secondTry == tail)
                 {
-                   // HeadLeader = false;
-                    TailLeader = true;
+                    theLongestHead2 = 0;
+                    theLongestTail2++;
+                    if (theLongestTali < theLongestTail2)
+                    {
+                        theLongestTali++;
+                    }
                     Console.Write($"Spin " + i + " of " + numberOfRun);
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("  \t" + firstTry + " + ");
                     Console.WriteLine(secondTry);
-                    theLongestTail = theLongestTail + 1;
                     doubleTail++;
                     Console.ResetColor();
                 }
                 else
                 {
-                    //    theLongestTail = 0;
-                    //    theLongestHead = 0;
+                    theLongestHead2 = 0; //reset number of double heads
+                    theLongestTail2 = 0; //reset number of double tails
                     Console.Write($"Spin " + i + " of " + numberOfRun + "  \t" + firstTry + " + ");
                     Console.WriteLine(secondTry);
                     numberOfOdds = numberOfRun - doubleTail - doubleHead;
@@ -106,7 +89,6 @@ namespace TwoUp
         {
             numberOfOdds = InOffOdds;
             decimal probabilytyOdds = 100 - (CalculateProbabilityDoubleHeads(doubleHead) + CalculateProbabilityDoubleTails(doubleTail));
-
             return probabilytyOdds;
 
         }
