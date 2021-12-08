@@ -6,6 +6,7 @@ namespace TwoUp
     {
         static void Main(string[] args)
         {
+            Console.ResetColor();
             Simulator simulator = new Simulator();
             simulator.RunSimulator();
             decimal doubleHead = simulator.doubleHead;
@@ -20,6 +21,12 @@ namespace TwoUp
             Console.WriteLine("\n\nProbability of double heads is " + probabilityDoubleHeads + " %.");
             Console.WriteLine("Probability of double tails is " + probabilityOfDoubleTails + " %.");
             Console.WriteLine("Probability of odds is " + probabilityOfOdds + " %.");
+            var r=simulator.theLongestHead;
+            Console.WriteLine(r);       
+            var t=simulator.theLongestTail;
+            Console.WriteLine("Tail "+t);   
+            var t2=simulator.theLongestHead2;
+            Console.WriteLine("Head 2 "+t2);
             Console.ResetColor();
             Console.ReadKey();
         }
