@@ -6,6 +6,7 @@ namespace TwoUp
     {
         static void Main(string[] args)
         {
+            Console.Title = "Game Two Up";
             Console.ResetColor();
             Simulator simulator = new Simulator();
             simulator.RunSimulator();
@@ -25,7 +26,7 @@ namespace TwoUp
             var h=simulator.theLongestHead;
             Console.WriteLine("\nThe longest double head "+h);
             Console.ForegroundColor = ConsoleColor.Red;
-            var t=simulator.theLongestTali;
+            var t=simulator.theLongestTail;
             Console.WriteLine("The longest double tail "+t);
             Console.ResetColor();
             Console.ReadKey();

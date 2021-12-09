@@ -8,18 +8,19 @@ namespace TwoUp
 {
     public class Simulator
     {
+
         RandomCoinGenerator grandomGenerator = new RandomCoinGenerator();
         public decimal doubleHead { get; set; }
         public decimal doubleTail { get; set; }
         public decimal numberOfOdds { get; set; }
-        public int theLongestHead { get; set; }
-        public int theLongestHead2 { get; set; }
-        public int theLongestTali { get; set; }
+        public int theLongestHead { get; set; } //We will keep this prop to calculate the longest double heads
+        public int theLongestHead2 { get; set; }  
+        public int theLongestTail { get; set; }//We will keep this prop to calculate the longest double tails
         public int theLongestTail2 { get; set; }
         string head = "Head";
         string tail = "Tail";
         int numberOfRun;
-        public void RunSimulator() //Function starts to run program, when user chooses number of spins
+        public void RunSimulator() //Function starts to run program, when user chooses the number of spins
         {
             NumberOfSpins();
             for (int i = 1; i <= numberOfRun; i++)
@@ -28,9 +29,9 @@ namespace TwoUp
                 string secondTry = grandomGenerator.OneUp();//Second coin
                 if (firstTry == head && secondTry == head)
                 {
-                    theLongestTail2 = 0;
+                    theLongestTail2 = 0; //reset the number of doubleTails2 and start counting doubleTails again
                     theLongestHead2++;
-                    if (theLongestHead < theLongestHead2)
+                    if (theLongestHead < theLongestHead2) //Will keep the highest numbers of doubleTails
                     {
                         theLongestHead++;
                     }
@@ -45,9 +46,9 @@ namespace TwoUp
                 {
                     theLongestHead2 = 0;
                     theLongestTail2++;
-                    if (theLongestTali < theLongestTail2)
+                    if (theLongestTail < theLongestTail2)
                     {
-                        theLongestTali++;
+                        theLongestTail++;
                     }
                     Console.Write($"Spin " + i + " of " + numberOfRun);
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -71,21 +72,21 @@ namespace TwoUp
             Console.WriteLine("Please choose number of spins.");
             numberOfRun = Convert.ToInt32(Console.ReadLine());
         }
-        public decimal CalculateProbabilityDoubleHeads(decimal InDoubleHead) //Calculate probability of double heads 
+        public decimal CalculateProbabilityDoubleHeads(decimal InDoubleHead) //Calculation of probability of double heads 
         {
             doubleHead = InDoubleHead;
             decimal probabilytyHeadWons = doubleHead / numberOfRun * 100;
             return probabilytyHeadWons;
 
         }
-        public decimal CalculateProbabilityDoubleTails(decimal InDoubleTail)//Calculate probability of all double tails 
+        public decimal CalculateProbabilityDoubleTails(decimal InDoubleTail)//Calculation of probability of all double tails 
         {
             doubleTail = InDoubleTail;
             decimal probabilytyTailsWons = doubleTail / numberOfRun * 100;
             return probabilytyTailsWons;
 
         }
-        public decimal CalculateProbabilityOfOdds(decimal InOffOdds)//Calculate probability of all odds 
+        public decimal CalculateProbabilityOfOdds(decimal InOffOdds)//Calculation of probability of all odds 
         {
             numberOfOdds = InOffOdds;
             decimal probabilytyOdds = 100 - (CalculateProbabilityDoubleHeads(doubleHead) + CalculateProbabilityDoubleTails(doubleTail));
